@@ -1,9 +1,18 @@
 import requests
 import json
 
+with open(r"kakao_code2.json","r") as fp:
+    tokens = json.load(fp)
+# print(tokens)
+# print(tokens["access_token"])
+
 friend_url = "https://kapi.kakao.com/v1/api/talk/friends"
 
-headers={"Authorization" : "Bearer " + "kNAMl79trvxdPZT2Gm-RpsLyHOwlXokQBvu1bAo9dVsAAAF7m2Gahw"}
+# GET /v1/api/talk/friends HTTP/1.1
+# Host: kapi.kakao.com
+# Authorization: Bearer {ACCESS_TOKEN}
+
+headers={"Authorization" : "Bearer " + tokens["access_token"]}
 
 result = json.loads(requests.get(friend_url, headers=headers).text)
 
